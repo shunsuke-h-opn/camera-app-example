@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
+import {Camera} from "react-camera-pro";
 import { useRef, useState } from 'react';
 
 export default function Home() {
@@ -19,13 +19,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Link href="/camera">
-        <a>camera</a>
-      </Link>
-      <br />
-      <Link href="/qr_code">
-        <a>qr_code</a>
-      </Link>
+      <main className={styles.main}>
+        <div>
+          <Camera ref={camera} />
+          <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button>
+          <img src={image} alt='Taken photo'/>
+        </div>
+      </main>
 
       <footer className={styles.footer}>
         <a
